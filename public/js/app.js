@@ -5143,11 +5143,87 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
   components: {
     WorkInProgress: _components_WorkInProgress_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      posts: "",
+      postResponse: ""
+    };
+  },
+  methods: {
+    getAllPosts: function getAllPosts() {
+      var _this = this;
+
+      axios.get("/api/posts").then(function (response) {
+        console.log(response);
+        _this.postResponse = response.data;
+      })["catch"](function (e) {
+        console.error(e);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getAllPosts();
   }
 });
 
@@ -41449,7 +41525,92 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("WorkInProgress")], 1)
+  return _c(
+    "div",
+    [
+      _c("WorkInProgress"),
+      _vm._v(" "),
+      _c("section", { staticClass: "posts" }, [
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "div",
+            { staticClass: "row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" },
+            _vm._l(_vm.postResponse.data, function (post) {
+              return _c("div", { key: post.id, staticClass: "col" }, [
+                _c("div", { staticClass: "product card" }, [
+                  _c("img", {
+                    attrs: {
+                      src: "storage/" + post.cover_image,
+                      alt: post.title,
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("h3", [_vm._v(_vm._s(post.title))]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v(_vm._s(post.content))]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-footer" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col" }, [
+                        post.user
+                          ? _c("div", { staticClass: "author" }, [
+                              _c("strong", [_vm._v("Author: ")]),
+                              _vm._v(
+                                "\n                                        " +
+                                  _vm._s(post.user.name) +
+                                  "\n                                    "
+                              ),
+                            ])
+                          : _vm._e(),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col" }, [
+                        post.category
+                          ? _c("span", [
+                              _c("strong", [_vm._v("Category: ")]),
+                              _vm._v(
+                                "\n                                        " +
+                                  _vm._s(post.category.name) +
+                                  "\n                                    "
+                              ),
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        post.tags.length > 0
+                          ? _c("div", { staticClass: "tags" }, [
+                              _c("strong", [_vm._v("Tags: ")]),
+                              _vm._v(" "),
+                              _c(
+                                "ul",
+                                { staticClass: "list-unstyled" },
+                                _vm._l(post.tags, function (tag) {
+                                  return _c("li", { key: tag.id }, [
+                                    _vm._v(
+                                      "\n                                                " +
+                                        _vm._s(tag.name) +
+                                        "\n                                            "
+                                    ),
+                                  ])
+                                }),
+                                0
+                              ),
+                            ])
+                          : _vm._e(),
+                      ]),
+                    ]),
+                  ]),
+                ]),
+              ])
+            }),
+            0
+          ),
+        ]),
+      ]),
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
