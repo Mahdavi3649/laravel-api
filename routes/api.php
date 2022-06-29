@@ -48,9 +48,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });  */
 
 /* Scorciatoia con relazioni + paginazione  */
-Route::get('posts', function(){
-    $posts = Post::with(['tags','category','user'])->orderByDesc('id')->paginate(9);
-    return $posts;
-});
+Route::get('posts', 'API\PostController@index');
+Route::get('categories', 'API\CategoryController@index');
+Route::get('tags', 'API\TagController@index');
 
 
